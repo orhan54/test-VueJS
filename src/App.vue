@@ -1,66 +1,87 @@
 <template>
+
+  <Layout>
+    <template #header>
+      En tete
+    </template>
+  
+    <template #aside>
+      Sidebar
+    </template>
+  
+    <template #main>
+      Main
+    </template>
+  
+    <template #footer>
+      Footer
+    </template>
+  </Layout>
+
   <form action="" @submit.prevent="addTodo">
     <fieldset role="group">
-    <input 
-      v-model="newTodo"
-      type="text"
-      placeholder="Tache a effectuer">
-    <button :disabled="newTodo.length === 0" style="margin-left: 10px;">Ajouter</button>
-  </fieldset>
-
-  <div style="margin-left: 5px; 
-              margin-top: 20px; 
-              color: green;
-              font-size: 20px;" 
-              v-if="todos.length > 0 && todos.every(todo => todo.completed)">
-              <i class="pi pi-check" style="font-size: 1rem">
-                Toutes les taches sont terminer
-              </i>
-  </div>
+      <input
+        v-model="newTodo"
+        type="text"
+        placeholder="Tache a effectuer">
+      <button :disabled="newTodo.length === 0">Ajouter</button>
+    </fieldset>
   </form>
+  
   <div v-if="todos.length === 0">Vous n'avez pas de tache a faire</div>
+
   <div v-else>
     <ul>
-      <li 
-        v-for="todo in sortedTodos()"
+      <li v-for="todo in sortedTodos"
         :key="todo.date"
         :class="{completed: todo.completed}"
         >
-        <label>
-          <input type="checkbox" v-model="todo.completed">
-          {{ todo.title }}  
-        </label>
+          <Checkbox :label="todo.title" @check=""
+          v-model="todo.completed" />
       </li>
     </ul>
+  </div>
+
+  <div>
     <label>
       <input type="checkbox" v-model="hideCompleted">
-      Masque les taches terminer
+      Masquer les taches complétées
     </label>
+
+    <p v-if="remainingTodos > 0">
+      {{ remainingTodos }} tache{{ remainingTodos > 1 ? 's' : '' }} à faire
+    </p>
+
+    <Checkbox :label="'Bonjour'"/>
   </div>
+
   
 </template>
 
 
 <script setup>
-import { ref } from 'vue';
+
+import { ref, computed } from 'vue';
+import Checkbox from './Checkbox.vue';
+import Button from './Button.vue';
+import Layout from './Layout.vue';
 
 const newTodo = ref('')
 
 const hideCompleted = ref(false)
 
-const todos = ref([{
+const todos = ref ([{
   title: 'Tache de test',
   completed: true,
-  date: 1,
+  date: 1
 }, {
   title: 'Tache a faire',
   completed: false,
-  date: 2,
+  date: 2
 }])
 
 const addTodo = () => {
   todos.value.push({
-    
     title: newTodo.value,
     completed: false,
     date: Date.now()
@@ -68,14 +89,18 @@ const addTodo = () => {
   newTodo.value = ''
 }
 
-const sortedTodos = () => {
-  const sortedTodos = todos.value.toSorted((a, b) => a.completed 
-  > b.completed ? 1 : -1)
-  if(hideCompleted.value === true) {
+const sortedTodos = computed(() => {
+  const sortedTodos = todos.value.toSorted((a, b) => a.completed > b.completed ? 1 : -1)
+  if (hideCompleted.value === true) {
     return sortedTodos.filter(t => t.completed === false)
   }
   return sortedTodos
-}
+})
+
+const remainingTodos = computed(() => {
+  return todos.value.filter(t => t.completed === false).length
+})
+
 
 </script>
 
