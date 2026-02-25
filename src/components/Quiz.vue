@@ -6,12 +6,7 @@
         <Recap v-if="state === 'recap'" :answers="answers" :quiz="quiz" />
     </div>
 
-
 </template>
-
-
-
-
 
 <script setup>
 import { computed, ref } from 'vue';
@@ -37,6 +32,5 @@ const addAnswer = (answer) => {
     }
     
 }
-
 
 </script>

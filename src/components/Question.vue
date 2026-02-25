@@ -17,9 +17,7 @@
         </ul>
     </div>
 
-
 </template>
-
 
 
 <script setup>
@@ -48,7 +46,7 @@ onMounted(() => {
     timer = setTimeout(() => {
         answer.value = ''
         onAnswer()
-    }, 3_000)
+    }, 8_000)
 })
 
 onUnmounted(() => {
