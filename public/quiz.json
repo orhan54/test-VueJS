@@ -1,4 +1,5 @@
-{
+[{
+    "slug": "films-series",
     "title": "Questionnaire sur les Films et Séries",
     "minimum_score": 4,
     "success_message": "Félicitations! Vous êtes un véritable cinéphile!",
@@ -45,4 +46,44 @@
             "correct_answer": "Benedict Cumberbatch"
         }
     ]
+},{
+    "slug": "logos-foot",
+    "title": "Questionnaire sur les logos de club de foot",
+    "minimum_score": 4,
+    "success_message": "Félicitations! Vous êtes un véritable fan!",
+    "failure_message": "Dommage! Vous devriez regarder plus le foot.",
+    "questions": [
+        {
+            "question": "Trouver à qui appartient ce logo ?",
+            "logo": "/Logo/atletico_madrid.png",
+            "choices": ["Barca", "Seville", "Atletico Madrid", "Real Madrid"],
+            "correct_answer": "Atletico Madrid"
+        },
+        {
+            "question": "Trouver à qui appartient ce logo ?",
+            "logo": "/Logo/inter.png",
+            "choices": ["Roma", "Lazio", "Inter", "Fiorentina"],
+            "correct_answer": "Inter"
+        },
+        {
+            "question": "Trouver à qui appartient ce logo ?",
+            "logo": "/Logo/liverpool.png",
+            "choices": ["Everton", "Liverpool", "Tottenham", "West Ham"],
+            "correct_answer": "Liverpool"
+        },
+        {
+            "question": "Trouver à qui appartient ce logo ?",
+            "logo": "/Logo/psg.png",
+            "choices": ["Lyon", "Marseille", "Paris Saint-Germain", "Monaco"],
+            "correct_answer": "Paris Saint-Germain"
+        },
+        {
+            "question": "Trouver à qui appartient ce logo ?",
+            "logo": "/Logo/bayern_munich.png",
+            "choices": ["Borussia Dortmund", "Bayern Munich", "RB Leipzig", "Bayer Leverkusen"],
+            "correct_answer": "Bayern Munich"
+        }
+    ]
 }
+]
+
